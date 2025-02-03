@@ -1,23 +1,24 @@
 package model;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Apartamento {
-    private String planta;
+    private int planta;
     private String puerta;
-    private int propietarios;
+    private Propietario [] propietarios;
 
-    public Apartamento(String planta, String puerta, int propietarios) {
+    public Apartamento(int planta, String puerta, Propietario[] propietarios) {
         this.planta = planta;
         this.puerta = puerta;
         this.propietarios = propietarios;
     }
 
-    public String getPlanta() {
+    public int getPlanta() {
         return planta;
     }
 
-    public void setPlanta(String planta) {
+    public void setPlanta(int planta) {
         this.planta = planta;
     }
 
@@ -29,11 +30,11 @@ public class Apartamento {
         this.puerta = puerta;
     }
 
-    public int getPropietarios() {
+    public Propietario[] getPropietarios() {
         return propietarios;
     }
 
-    public void setPropietarios(int propietarios) {
+    public void setPropietarios(Propietario[] propietarios) {
         this.propietarios = propietarios;
     }
 
@@ -42,20 +43,20 @@ public class Apartamento {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Apartamento that = (Apartamento) o;
-        return propietarios == that.propietarios && Objects.equals(planta, that.planta) && Objects.equals(puerta, that.puerta);
+        return planta == that.planta && Objects.equals(puerta, that.puerta) && Objects.deepEquals(propietarios, that.propietarios);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(planta, puerta, propietarios);
+        return Objects.hash(planta, puerta, Arrays.hashCode(propietarios));
     }
 
     @Override
     public String toString() {
         return "Apartamento{" +
-                "planta='" + planta + '\'' +
+                "planta=" + planta +
                 ", puerta='" + puerta + '\'' +
-                ", propietarios=" + propietarios +
+                ", propietarios=" + Arrays.toString(propietarios) +
                 '}';
     }
 }

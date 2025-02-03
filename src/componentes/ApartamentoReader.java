@@ -1,15 +1,19 @@
 package componentes;
 
+import model.Apartamento;
+
 import java.util.Scanner;
 
 public class ApartamentoReader {
 
     private final Scanner scanner;
-    private final EdificioReader edificioReader;
+    private final PropietarioReader propietarioReader;
 
-    public ApartamentoReader(Scanner scanner, EdificioReader edificioReader) {
+    public ApartamentoReader(Scanner scanner, PropietarioReader propietarioReader) {
         this.scanner = scanner;
-        this.edificioReader = edificioReader;
+        this.propietarioReader = propietarioReader;
     }
-
+    public Apartamento read(){
+        System.out.println();
+    }
 }

@@ -1,16 +1,17 @@
 package model;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Edificio {
     private String direccion;
     private String municipio;
-    private String Apartamentos;
+    private Apartamento[] apartamentos ;
 
-    public Edificio(String direccion, String municipio, String apartamentos) {
+    public Edificio(String direccion, String municipio, Apartamento[] apartamentos) {
         this.direccion = direccion;
         this.municipio = municipio;
-        Apartamentos = apartamentos;
+        this.apartamentos = apartamentos;
     }
 
     public String getDireccion() {
@@ -29,12 +30,12 @@ public class Edificio {
         this.municipio = municipio;
     }
 
-    public String getApartamentos() {
-        return Apartamentos;
+    public Apartamento[] getApartamentos() {
+        return apartamentos;
     }
 
-    public void setApartamentos(String apartamentos) {
-        Apartamentos = apartamentos;
+    public void setApartamentos(Apartamento[] apartamentos) {
+        this.apartamentos = apartamentos;
     }
 
     @Override
@@ -42,12 +43,12 @@ public class Edificio {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Edificio edificio = (Edificio) o;
-        return Objects.equals(direccion, edificio.direccion) && Objects.equals(municipio, edificio.municipio) && Objects.equals(Apartamentos, edificio.Apartamentos);
+        return Objects.equals(direccion, edificio.direccion) && Objects.equals(municipio, edificio.municipio) && Objects.deepEquals(apartamentos, edificio.apartamentos);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(direccion, municipio, Apartamentos);
+        return Objects.hash(direccion, municipio, Arrays.hashCode(apartamentos));
     }
 
     @Override
@@ -55,7 +56,7 @@ public class Edificio {
         return "Edificio{" +
                 "direccion='" + direccion + '\'' +
                 ", municipio='" + municipio + '\'' +
-                ", Apartamentos='" + Apartamentos + '\'' +
+                ", apartamentos=" + Arrays.toString(apartamentos) +
                 '}';
     }
 }
